@@ -18,7 +18,7 @@ class PullRequestGetter:
         repo_contributors = repo.get_contributors()
         if repo_contributors.totalCount < 4:
             return None
-        pulls = repo.get_pulls(state='all')  # Interested in all PRs, closed are in fact better as they are the ones that have been merged
+        pulls = repo.get_pulls(state='all')  # Interested in all PRs, closed are in fact better as they are often the ones that have been merged
         if pulls.totalCount < 10:
             return None
         return pulls
