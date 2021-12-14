@@ -1,7 +1,7 @@
 import pandas as pd
 from pull_request_getter import PullRequestGetter
-from github import Github
 import re
+import random
 
 class DatasetGenerator:
     def __init__(self, data_path='../data/', size=1000000):
@@ -78,7 +78,56 @@ class DatasetGenerator:
         }
 
 
+class ModelDatasetGenerator:
+    def __init__(self, data_path='../data/', dataset_name='final_dataset.csv', size=1000000, split=0.5):
+        self.data_path = data_path
+        self.dataset_name = dataset_name
+        self.df = pd.DataFrame(columns=['pr_title_1', 'pr_body_1', 'commits_1', 'pr_title_2', 'pr_body_2', 'commits_2',
+                                        'same_repo', 'repo_1_name', 'repo_2_name', 'repo_1_user', 'repo_2_user'])
+        self.size = size
+        self.split = split
+
+    def create_dataset(self, save_datapath='../data/'):
+        df = pd.read_csv(self.data_path + self.dataset_name)
+        df.drop(columns=['Unnamed: 0'], inplace=True)
+        #We want to create a dataset comparing two samples from the original dataset, and whether they are from the same repo, with split being how often they are the same
+        #Get random sample from original dataset, and with probability of split , get another sample from the same repo, else get another sample from a different repo
+        #We want to do this for size number of times
+        for i in range(self.size):
+            sample_1 = df.sample(1)
+            if random.random() < self.split:
+                sample_2 = df[df['repo'] == sample_1['repo'].values[0]]
+                sample_2 = sample_2.sample(1)
+                same_repo = 1
+            else:
+                sample_2 = df[df['repo'] != sample_1['repo'].values[0]]
+                sample_2 = sample_2.sample(1)
+                same_repo = 0
+            appending_row = {
+                'pr_title_1': sample_1['pr_title'].values[0],
+                'pr_body_1': sample_1['pr_body'].values[0],
+                'commits_1': sample_1['commits'].values[0],
+                'pr_title_2': sample_2['pr_title'].values[0],
+                'pr_body_2': sample_2['pr_body'].values[0],
+                'commits_2': sample_2['commits'].values[0],
+                'same_repo': same_repo,
+                'repo_1_name': sample_1['repo'].values[0],
+                'repo_2_name': sample_2['repo'].values[0],
+                'repo_1_user': sample_1['user'].values[0],
+                'repo_2_user': sample_2['user'].values[0]
+            }
+            self.df = self.df.append(appending_row, ignore_index=True)
+            if i % 1000 == 0:
+                print('percent complete: ' + str((i / self.size)*100))
+            if i % 10000 == 0:
+                self.df.to_csv(save_datapath + 'combined_dataset_' + str(i) + '.csv')
+                self.df = pd.DataFrame(
+                    columns=['pr_title_1', 'pr_body_1', 'commits_1', 'pr_title_2', 'pr_body_2', 'commits_2',
+                             'same_repo', 'repo_1_name', 'repo_2_name', 'repo_1_user', 'repo_2_user'])
+        self.df.to_csv(self.data_path + 'combined_dataset.csv', index=True)
+
+
 
 if __name__ == '__main__':
-    dataset_generator = DatasetGenerator()
-    dataset_generator.generate_dataset()
+    model_dataset_generator = ModelDatasetGenerator()
+    model_dataset_generator.create_dataset(save_datapath='../final_data/')
