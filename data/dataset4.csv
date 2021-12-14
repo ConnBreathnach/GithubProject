@@ -1,0 +1,1613 @@
+,repo,user,pr_title,pr_body,commits
+0,httpie/httpie,sebastianczech,Solution for issue 1098 - prompted passwords are not properly persisted into sessions,"Pull request is proposition of solution for the issue #1098 , where prompted passwords are not properly persisted into sessions. Below is an example how it works after applying solution: 
+
+[![asciicast](LINK
+
+This is my first contribution into open source, so all feedback is more than welcome ;)",6
+1,httpie/httpie,isidentical,Implement new `pie` and `pie-light` styles,"Resolves #1237.
+
+Demos:
+[![asciicast](LINK
+[![asciicast](LINK",1
+2,httpie/httpie,isidentical,Improve download time,Based on #1232.,11
+3,httpie/httpie,isidentical,Fix snapcraft packaging,We now bundle both `pip` and `setuptools` (needed for plugin installation). As well as export the `httpie` command itself.,1
+4,httpie/httpie,isidentical,Improve startup time when pyOpenSSL is available on the environment,Based on #1232 ,11
+5,httpie/httpie,isidentical,Improve startup time when pyOpenSSL is available on the environment,Based on top of #1230 for the time being.,3
+6,httpie/httpie,isidentical,Benchmarking infrastructure,"Don't review yet, this is a draft.",5
+7,httpie/httpie,isidentical,Ignore crashes that happen on the 3rd party plugins,Fixes #1204 ,2
+8,httpie/httpie,isidentical,Don't inconsistently add XML declarations,Resolves #1156,1
+9,httpie/httpie,isidentical,Automatically enable --stream on server sent events,Resolves #376.,4
+10,httpie/httpie,isidentical,Formalize @ suffix for all operators,Resolves LINK,1
+11,httpie/httpie,isidentical,Add nested JSON syntax to the HTTPie DSL,Implement nested JSON syntax to the HTTPie DSL (through JSON form notation). Resolves #78 ,6
+12,httpie/httpie,isidentical,brew: add multidict,"multidict is needed for multiple headers with the same name, other than that the new `importlib-metadataa` dependency is not needed since brew packages for 3.10 (it is in the stdlib since 3.8+)!",1
+13,httpie/httpie,isidentical,Improve startup time with lazy loading some args,Fixes #1211,5
+14,httpie/httpie,isidentical,Add httpie --version,`httpie --version` now also returns the version of HTTPie CLI. (just like `http --version`).,1
+15,httpie/httpie,isidentical,Fix packit CI,"Currently, the package in the Fedora repositories doesn't match the master, since we've added a new command. But packit doesn't know that and tries to build from the master with the 2.6.0 release spec file. This patch reconfigures packit to use our own locally hosted specfile.",1
+16,httpie/httpie,isidentical,Support ==@ syntax for query parameter values from file,"Superseeds #661
+Fixes #605 
+Co-authored-by: Vladimir Berkutov <vladimir.berkutov@gmail.com>",1
+17,httpie/httpie,isidentical,Implement Bearer Auth,Resolves #1215,1
+18,httpie/httpie,isidentical,Proper JSON handling for :=/:=@,Fixes #1212 ,3
+19,httpie/httpie,janbrasna,docs: Consistent userdir/name example,Aligning with the rest of the text placeholders…,1
+20,httpie/httpie,janbrasna,docs: Fixup broken readme links,Some old raw locations that slipped through the cracks…,1
+21,httpie/httpie,isidentical,Preserve individual headers with the same name on responses,Resolves #1207 ,5
+22,httpie/httpie,isidentical,core: support custom request/response classes,"While playing with a 3rd party extension (httpie-gssapi), I've noticed that it sometimes get broken due to the hard-coded `requests` classes. `requests` plugins like `requests-gssapi` might return different type of request/response classes like [requests_gssapi.gssapi_.SanitizedResponse](LINK which makes sense depending on the use case. But since some of the places within `httpie` hard codes this, it is impossible to get around of it (it uses `type(message)` instead of `isinstance()` etc. checks). 
+
+This patch simply abstracts request/response inference to it's own unit, and simplifies this process by changing the default type resolution from bare `type()` checks to `isinstance()` checks so all classes of the `reqeusts.Response` and `requests.PreparedRequest` will be supported with this.",2
+23,httpie/httpie,doublevcodes,Change `PyPi` to `PyPI`,This pull request changes the acronym for the Python Packaging Index from it’s previous spelling of PyPi to PyPI.,3
+24,httpie/httpie,isidentical,cmd: Implement httpie plugins interface,"Resolves #566.
+
+Remaining stuff:
+- [x] Fix windows (apparently some sysconfig issues)
+- [x] Docs
+- [x] More tests (and possibly some functional tests for error scenerios)
+- [x] Playing with real world plugins (not part of the PR, but we should test them and ensure they are working both ways)
+- [x] Improving UI for errors (e.g PermissionError)
+",19
+25,httpie/httpie,jakubroztocil,Strip leading `://` from URLs to allow quick conversion of a pasted URL to calls,"Closes #1195
+
+When you paste a URL into the terminal, you can even keep the `://` bit in the URL argument to quickly convert the URL into an HTTPie call just by adding a space after the protocol name.
+```bash
+# Paste LINK add a space, submit:
+$ https ://example.org
+```
+```bash
+# Paste LINK add a space, submit:
+$ http ://example.org
+```
+",6
+26,httpie/httpie,isidentical,Support multiple headers sharing the same name,"May resolve #130. If the design is agreed upon, may require change in a few places:
+- Changelog
+- Build scripts (not sure about this, but I guess adding a dependency would mean I need to change a bunch of places in `docs/packaging`).",5
+27,httpie/httpie,this-is-r-gaurav,Fix Snap autocompletion,"After placing the completion script in `$SNAPCRAFT_PRIME` it was working as expected
+`httpie.http -`<kbd>TAB</kbd><kbd>TAB</kbd>
+@BoboTiG can you please verify once.",1
+28,httpie/httpie,hosseingt,Update CONTRIBUTING.md,corrected command for installing development version in windows,1
+29,httpie/httpie,BoboTiG,Update downstream files for HTTPie 2.6.0,I will merge when 100% sure all those changes are downstreamed. It should be quick though.,18
+30,httpie/httpie,hroncok,dnf/yum update is the same as dnf upgrade -- it updates all packages,"No reason to run it before installing or upgrading httpie.
+This is not apt.",1
+31,httpie/httpie,this-is-r-gaurav,Do not append missing XML declaration in formatted responses,Fixes #1156.,7
+32,httpie/httpie,BoboTiG,v2.6.0,[skip ci],1
+33,httpie/httpie,BoboTiG,Add a script that lists all contributors to a release,"We will keep a contributors database (simple JSON file) where each entry is a contributor (either a committer, either an issue reporter, either both) with some nicknames (GitHub, and Twitter).
+The file will be used to craft credits on our release blog posts.",5
+34,httpie/httpie,nixbytes,change elif to the start function,"refactor the filename_from_url with elif to simplify the code a little. ran the test and make came out clean. hope this helps. 
+",1
+35,httpie/httpie,BoboTiG,Add support for nested JSON syntax,"## Proposal
+
+Data fields (`key=value`) and raw JSON fields (`key:=value`) now parse the `key` as [JSON form](LINK
+
+Example:
+```bash
+$ http PUT pie.dev/put \
+    'object=scalar' \                           # Object — blank key
+    'object[0]=array 1' \                       # Object — ""0"" key
+    'object[key]=key key' \                     # Object — ""key"" key
+    'array:=1' \                                # Array — first item
+    'array:=2' \                                # Array — second item
+    'array[]:=3' \                              # Array — append (third item)
+    'wow[such][deep][3][much][power][!]=Amaze'  # Nested object
+```
+```json
+{
+    ""array"": [
+        1,
+        2,
+        3
+    ],
+    ""object"": {
+        """": ""scalar"",
+        ""0"": ""array 1"",
+        ""key"": ""key key""
+    },
+    ""wow"": {
+        ""such"": {
+            ""deep"": [
+                null,
+                null,
+                null,
+                {
+                    ""much"": {
+                        ""power"": {
+                            ""!"": ""Amaze""
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
+```
+
+The new syntax is compatible with other JSON-specific syntax and can be mixed altogether.
+
+---
+
+Note: it is not doable to simply use the `jarg` module as it would install PyYAML, and we want to keep our requirements light. I also checked other modules like [html-json-forms](LINK but I prefer to ship our own code for the same reason: no new module to package. At the end, the new code is maintainable enough, and *quite* small.",2
+36,httpie/httpie,BoboTiG,Fix encoding error with non-prettified encoded responses,"## Proposal
+
+1. Move response `Content-Type` checks from the `PrettyStream` class to the `EncodedStream` parent class.
+2. Remove `--format-option response.as` and `--response-as` options.
+3. Introduce `--response-encoding` and `--response-mime` options.
+
+Fixes #1167.",19
+37,httpie/httpie,BoboTiG,Include plugin info in `--debug` output,"Closes #455.
+
+Example:
+
+```bash
+$ http --debug pie.dev/get
+HTTPie 2.6.0.dev0
+Requests 2.26.0
+Pygments 2.10.0
+Python 3.9.7+ (heads/3.9:09390c837a, Sep 22 2021, 11:36:19) 
+[GCC 10.3.0]
+/home/tiger-222/projects/httpie/venv39/bin/python
+Linux 5.10.0-8-amd64
+
+<Environment {'colors': 256,
+ 'config': {'default_options': ['--style=monokai']},
+ 'config_dir': PosixPath('/home/tiger-222/.httpie'),
+ 'devnull': <property object at 0x7f1b74dbb130>,
+ 'is_windows': False,
+ 'log_error': <function Environment.log_error at 0x7f1b74da9d30>,
+ 'program_name': '__main__.py',
+ 'stderr': <_io.TextIOWrapper name='<stderr>' mode='w' encoding='utf-8'>,
+ 'stderr_isatty': True,
+ 'stdin': <_io.TextIOWrapper name='<stdin>' mode='r' encoding='utf-8'>,
+ 'stdin_encoding': 'utf-8',
+ 'stdin_isatty': True,
+ 'stdout': <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>,
+ 'stdout_encoding': 'utf-8',
+ 'stdout_isatty': True}>
+
+<PluginManager {'adapters': [<class 'httpie_snapdsocket.SnapdSocketTransportPlugin'>],
+ 'auth': [<class 'httpie.plugins.builtin.BasicAuthPlugin'>,
+          <class 'httpie.plugins.builtin.DigestAuthPlugin'>],
+ 'converters': [],
+ 'formatters': [<class 'httpie.output.formatters.headers.HeadersFormatter'>,
+                <class 'httpie.output.formatters.json.JSONFormatter'>,
+                <class 'httpie.output.formatters.xml.XMLFormatter'>,
+                <class 'httpie.output.formatters.colors.ColorFormatter'>]}>
+
+>>> requests.request(**{'auth': None,
+ 'data': RequestJSONDataDict(),
+ 'headers': {'User-Agent': b'HTTPie/2.6.0.dev0'},
+ 'method': 'get',
+ 'params': <generator object MultiValueOrderedDict.items at 0x7f1b742d7510>,
+ 'url': 'LINK
+
+HTTP/1.1 200 OK
+CF-Cache-Status: DYNAMIC
+CF-RAY: 69347a9b088fedbf-CDG
+Connection: keep-alive
+Content-Encoding: gzip
+Content-Type: application/json
+Date: Thu, 23 Sep 2021 14:31:50 GMT
+NEL: {""success_fraction"":0,""report_to"":""cf-nel"",""max_age"":604800}
+Report-To: {""endpoints"":[{""url"":""https:\/\/a.nel.cloudflare.com\/report\/v3?s=Pi%2Bew9tk41cRrv9swQiYxozWzBIwPtMk8%2F0ZpzyYLO%2B1PEhq8%2Fk%2BqO8heSXy5JBRXsdpx%2Bw0e1RskVMsoQztEdvWywJzn0JfU4Ct2sHm6VZ2AkPN9G0pZPg7""}],""group"":""cf-nel"",""max_age"":604800}
+Server: cloudflare
+Transfer-Encoding: chunked
+access-control-allow-credentials: true
+access-control-allow-origin: *
+alt-svc: h3="":443""; ma=86400, h3-29="":443""; ma=86400, h3-28="":443""; ma=86400, h3-27="":443""; ma=86400
+
+{
+    ""args"": {},
+    ""headers"": {
+        ""Accept"": ""*/*"",
+        ""Accept-Encoding"": ""gzip"",
+        ""Cdn-Loop"": ""cloudflare"",
+        ""Cf-Connecting-Ip"": ""89.159.87.157"",
+        ""Cf-Ipcountry"": ""FR"",
+        ""Cf-Ray"": ""69347a9b088fedbf-FRA"",
+        ""Cf-Visitor"": ""{\""scheme\"":\""http\""}"",
+        ""Connection"": ""Keep-Alive"",
+        ""Host"": ""pie.dev"",
+        ""User-Agent"": ""HTTPie/2.6.0.dev0""
+    },
+    ""origin"": ""89.159.87.157"",
+    ""url"": ""LINK
+}
+```",3
+38,httpie/httpie,BoboTiG,Add workflow to test with pyOpenSSL active,"Original patch by @gmelodie.
+
+Fixes #939.
+Closes #947.",2
+39,httpie/httpie,BoboTiG,Fix duplicate keys preservation of JSON data,"Supersedes #1136 (I messed up with remote repositories).
+
+Fixes #1133.",5
+40,httpie/httpie,BoboTiG,Expand the pytest configuration,And rely on it to run tests.,1
+41,httpie/httpie,BoboTiG,[snap] Improve OS integration,Get back read-write access to `$HOME/.httpie` and `$HOME/.config/httpie`.,1
+42,httpie/httpie,BoboTiG,[snap] Comment out the problematic interface,"It seems it just needs to be present for the snap to be rejected.
+
+OSS-34",1
+43,httpie/httpie,BoboTiG,[snap] Remove personal-files interface,"Use of the `personal-files` interface is reserved for vetted publishers.
+
+The interface requires a validation, but we need to publish at least one package first. So let's skip that part, release a version and ask for the interface access in a second time.
+
+Also add a workflow to build & test the snap package.
+
+OSS-34",1
+44,httpie/httpie,BoboTiG,Add the release workflow,It has to be triggered manually for now.,1
+45,httpie/httpie,BoboTiG,Add a workflow to check documentations,"The new tool can be installed using that command:
+```bash
+$ gem install mdl
+```
+Then use it like:
+```bash
+$ make doc-check
+```",6
+46,httpie/httpie,BoboTiG,Use HTTPie for the documentation build request,~WIP until HTTPie will be available on snap.~,2
+47,httpie/httpie,om26er,use LZO compression for snap,"The snap archive should be compressed using LZO compression. This makes things relatively fast. 
+
+Some reading on why LINK",1
+48,httpie/httpie,hroncok,Packit: Get the current Fedora Rawhide specfile,"Using the fork is not needed anymore,
+since Rawhide was updated to 2.5.0 and no longer has patches.",1
+49,httpie/httpie,BoboTiG,Update brew formula to 2.5.0,`extras/brew-deps.py` is now producing the same output as the [official Formula](LINK,5
+50,httpie/httpie,hukkin,Add GFM plugin for mdformat,I noticed that you are using mdformat and have GFM tables in the docs. The GFM plugin is needed in this case to parse (and format) GFM specific syntax properly.,1
+51,httpie/httpie,BoboTiG,Convert most of the documentation from the frontend `README.rst` to `…,"…docs/REAME.md`
+
+Also converted all reStructuredText files to Markdown.",5
+52,httpie/httpie,BoboTiG,Fix duplicate keys preservation of JSON data,Fixes #1133.,1
+53,httpie/httpie,BoboTiG,Allow to overwrite the response Content-Type from options,"It implements the support for custom mime types.
+It is a start, it will be used later in  #1110 to support custom a charset.
+
+Summary:
+```bash
+$ http --response-as 'appllication/xml' \
+    LINK
+```",4
+54,httpie/httpie,BoboTiG,Add the formatting options section in the docs,It will ease future changes and should improve reading/finding information.,1
+55,httpie/httpie,BoboTiG,Improve JSON output when there is leading data before the actual JSON body,"In some special cases, to prevent against Cross Site Script Inclusion (XSSI) attacks, the JSON response body starts with a magic prefix line that must be stripped before feeding the rest of the response body to the JSON parser.
+Such prefix is now simply ignored from the parser but still printed in the terminal.
+
+Supersedes #529.",2
+56,httpie/httpie,BoboTiG,Add support for XML formatting,"Slightly inspired from #720, it explains the credits.
+Closes #825.
+
+XML test files are from the [defused repository](LINK
+
+As a side effect, XHTML responses will be pretty-printed too.",1
+57,httpie/httpie,BoboTiG,Fix handling of session files with `Cookie:` followed by other headers,Fixes #1126.,3
+58,httpie/httpie,BoboTiG,Simplify `get_content_type()`,"We were using the potential `encoding` returned by `mimetypes.guess_type()` to expand the `Content-Type` header. 
+According to the RFC-7231 [1] the `Content-Type` should contain a charset and nothing more. But as stated in the `mimetypes.guess_type()` doc [2], the `encoding` would be the name of the program used to encode (e.g. compress or gzip) the payload. The `encoding` is suitable for use as a `Content-Encoding` header. See [3] for potential `encoding`s, none is a IANA registered one [4], and so a valid charset to be used by the `Content-Type` header.
+
+[1] LINK
+[2] LINK
+[3] LINK
+[4] LINK",1
+59,httpie/httpie,BoboTiG,Rework `__main__.py` to follow best practices,It also simplifies how the `main()` function could be tested.,1
+60,httpie/httpie,BoboTiG,CI: Run tests on Python 3.10 RC1,Also added Dependabot to keep GitHub actions up-to-date.,1
+61,httpie/httpie,BoboTiG,Use builtin `open()` in `setup.py`,It must be a reliquary from Python 2.7 support.,1
+62,httpie/httpie,hroncok,Packit: Enable the Koji repsitory in Copr,"By default, only updates that are propagated trough the Fedora's update system
+will be available in the community Copr build system.
+On stable Fedora releases,
+updates (including new packages) might be delayed 1+ week.
+
+This adds the latest Koji (that's the name of the official Fedora build system) repo.
+That repo contains more recent packages available during the official Fedora builds.
+
+The Koji repo is not mirrored,
+so the Copr builds are more likely to encounter a network issue,
+but I think it is worth it.
+The `/packit build` command may be used in the pull request if this happens.",1
+63,httpie/httpie,BoboTiG,Refine abstract methods and properties,Extracted from #1110.,1
+64,httpie/httpie,BoboTiG,Add more streaming tests,"I extracted several tests from #1110 as they are not directly related to that work and it will ease reviewing the former.
+
+Also fixed minor glitches here and there and re-enabled a unicode test.",2
+65,httpie/httpie,BoboTiG,Uniformize UTF-8 naming,"Replace `utf8` -> `utf-8` everywhere.
+It should have no impact, `utf8` is an alias of `utf-8` [1].
+
+[1] LINK
+
+---
+
+Full story: I kind of need such uniformization for #1110 where I am adding tests. And I have to deal with our naming (`utf8`) and the one from `requests` or `charset_normalizer` (`utf-8`).
+Note that this is a one-time small clean-up, and I can live without that patch being merged.",5
+66,httpie/httpie,BoboTiG,Add more download tests,Combining that PR + #1113 + #1112 should bring back ~100% coverage for downloads.,1
+67,httpie/httpie,BoboTiG,--download: Use `time.monotonic()` and rework code to prevent `ZeroDivisionError` specific handling,It simplifies speed/percentage handling. It also expands coverage as testing previous `ZeroDivisionError` corner-cases is not easy.,1
+68,httpie/httpie,BoboTiG,Minor clean-up,I had a look at tests coverage in the context of #1110 and saw 1-2 things that could be quickly tackled.,3
+69,httpie/httpie,ainzzorl,Simplify spinner_pos calculation a little,A teeny-tiny refactoring. I noticed this condition while skimming the code and though it looked awkward :-),1
+70,httpie/httpie,BoboTiG,Improve handling of prettified responses without correct content-type encoding,"Supersedes #594.
+Fixes #1022 and related already-closed issues.
+Fixes #358.
+Fixes #627.",16
+71,httpie/httpie,BoboTiG,Extend plugins lookup paths,"Plugins lookup paths are automatically extended to allow searching in several well-known locations. It will fix issues when HTTPie is installed through Homebrew and plugins through `pip`, on macOS for instance.
+
+The fix is global and ease future additions to lookup paths.
+
+Third-party applications can also extend the new module-level constant  `plugin.manager.EXTENDED_PLUGINS_SEARCH_AREA` to include more specific locations.
+
+There is no new option as I think it will be overkill: installing modules in non-standard locations is something not recommended and target a small amount of our users, if any.
+
+Credits also go to @matthew16550 :)
+
+Fixes #566.",1
+72,httpie/httpie,BoboTiG,Add the Snap build file for general Linux packaging,"Based on the work of @elopio and @chipaca.
+
+FTR the final package is 5.4 MB.
+
+---
+
+TODO:
+- [x] Snap `http` and `https` [aliases](LINK (edit: first need to merge that PR and upload our first package to the `httpie` repository).
+- [x] get back the `snapd://` protocol support (edit: done with LINK
+- [ ] an issue also present in the current unofficial package: the configuration file is not taken into account because of environment variables handling by `snapd`.
+
+It would be good to also find a way to actually test those packages.",1
+73,httpie/httpie,marcelstoer,Use echo with -n,I argue that you most likely don't want/need to send the trailing newline.,1
+74,httpie/httpie,BoboTiG,Normalize the version,"To fix that warning:
+
+    setuptools/dist.py:473: UserWarning: Normalizing '2.5.0-dev' to '2.5.0.dev0'
+
+---
+
+It will be useful for the upcoming Snap package. The generated file name will help identifying the version.
+Before: `httpie_2.5.0-dev_amd64.snap`
+After: `httpie_2.5.0.dev_amd64.snap`",1
+75,httpie/httpie,nixbytes,refactor the return and create one liner,"Hi, 
+
+First of all, great project. I wanted to help out a little and figure I refactor of code on the client. Let me know if there is anything I need to do or change. so far the test 406 passed, 4 skipped, 1 xfailed in 15.21s",6
+76,httpie/httpie,IlyaSukhanov,Support requests.response.raw being a file-like object,"Previously httpie relied on requests.models.Response.raw being
+urllib3.HTTPResponse.  The Requests documentation specifies that
+[requests.models.Response.raw](LINK
+is a File-like object but allows for other types for internal use.
+
+This change introduces graceful handling for scenarios when
+requests.models.Response.raw is not urllib3.HTTPResponse. In such a scenario
+httpie now falls back to extracting metadata from requests.models.Response
+directly instead of direct access from protected protected members such as
+response.raw._original_response. A side effect in this fallback procedure is
+that we can no longer determine HTTP protocol version and report it as `??`.
+
+This change is necessary to make it possible to implement TransportPlugins
+without having to also needing to emulate internal behavior of urlib3 and
+http.client.
+
+This pull requests is an attempt to address LINK
+",16
+77,httpie/httpie,jakubroztocil,Final touches for #1088 (fix ``--verbose`` HTTP 307 redirects with streamed request body),#1088,5
+78,httpie/httpie,BoboTiG,Use a more modern approach to run tests,"Running tests through `python setup.py test` is deprecated:
+
+> WARNING: Testing via this command is deprecated and will be removed in a future version. Users looking for a generic test entry point independent of test runner are encouraged to use tox.
+
+I am not in favor of moving back to `tox`, we should simply run tests using `python -m pytest` (or `make test`) and that's it.
+
+A new extra was added, `dev`, to install development requirements:
+```shell
+$ python -m pip install --upgrade --editable '.[dev]'
+```",1
+79,httpie/httpie,BoboTiG,Fix HTTP 307 redirects in verbose mode if request body is being streamed,Fixes #1079.,1
+80,httpie/httpie,BoboTiG,Prevent packaging of test files,cc @hroncok ,1
+81,httpie/httpie,hroncok,Add a Packit configuration for Fedora packaging," - all pull requests are build-tested in LINK
+ - new releases will create pull requests in LINK
+
+As discussed with @BoboTiG over email. Not tested yet.
+
+The CI build will fail because of LINK -- once that is fixed, I'll rebase this.
+
+The service needs to be enabled first: LINK",2
+82,httpie/httpie,BoboTiG,Add a reproduction test case for #1082,"The fix may actually be slightly more complex than I expected.
+We would need, at first sight, to loose the prepared requests + responses streaming.
+
+A potential solution will come in a near future.",1
+83,httpie/httpie,BoboTiG,Switch from pycodestyle to flake8 for code style checks,"`flake8` does a little more than just checking PEP8 violations, and I think it is a good balance between `pycodestyle` and other tools like `pylint`. It will catch coding issues as well, but only what maters and without being too noisy for contributors.
+
+WDYT @jakubroztocil? I am open to keep `pycodestyle` or to try something else. Same for the new `make codestyle`, it can be renammed or just kept as-is.",1
+84,httpie/httpie,BoboTiG,Review OSError exceptions handling,"- Replace obsolete `IOError` (Python 2) with `OSError`, cf LINK
+- Improve `OSError` catches at different places, simplifying the code.",1
+85,httpie/httpie,BoboTiG,Minor clean-up,"- Remove default arguments to `open()`.
+- Make use of `pytest` mechanisms for temporary folders.",1
+86,httpie/httpie,BoboTiG,Fix --style colors list help indentation,"Before:
+```
+   --style STYLE, -s STYLE
+       Output coloring style(default is ""auto""). It can be One of:
+
+        abap, algol, algol_nu, arduino, auto, autumn, borland, bw,           <---- HERE
+            colorful, default, emacs, friendly, fruity, gruvbox - dark,
+            gruvbox - light, igor, inkpot, lovelace, manni, material,
+            monokai, murphy, native, paraiso - dark, paraiso - light,
+            pastie, perldoc, rainbow_dash, rrt, sas, solarized,
+            solarized - dark, solarized - light, stata, stata - dark, stata-
+            light, tango, trac, vim, vs, xcode, zenburn
+
+        The ""auto"" style follows your terminal's ANSI color styles.
+
+        For non - auto styles to work properly, please make sure that the
+        $TERM environment variable is set to ""xterm-256color"" or similar
+        (e.g., via `export TERM=xterm - 256color' in your ~ / .bashrc).
+```
+
+After:
+```
+   --style STYLE, -s STYLE
+       Output coloring style(default is ""auto""). It can be One of:
+
+            abap, algol, algol_nu, arduino, auto, autumn, borland, bw,       <---- HERE
+            colorful, default, emacs, friendly, fruity, gruvbox - dark,
+            gruvbox - light, igor, inkpot, lovelace, manni, material,
+            monokai, murphy, native, paraiso - dark, paraiso - light,
+            pastie, perldoc, rainbow_dash, rrt, sas, solarized,
+            solarized - dark, solarized - light, stata, stata - dark, stata-
+            light, tango, trac, vim, vs, xcode, zenburn
+
+        The ""auto"" style follows your terminal's ANSI color styles.
+
+        For non -auto styles to work properly, please make sure that the
+        $TERM environment variable is set to ""xterm-256color"" or similar
+        (e.g., via `export TERM=xterm -256color' in your ~/.bashrc).
+```
+",1
+87,httpie/httpie,exploide,Updated fish shell completions,Just brought the completions for fish shell up to date.,1
+88,httpie/httpie,hroncok,Adapt doctest of tests.utils.http to work on Python 3.10 as well,"LINK
+
+Python 3.10 changed the repr of enum members, and the doctest of tests.utils.http failed.
+Exact reprs are unfortunately not considered stable API between Python releases:
+
+    =================================== FAILURES ===================================
+    __________________________ [doctest] tests.utils.http __________________________
+    209
+    210     Example:
+    211
+    212     $ http --auth=user:password GET pie.dev/basic-auth/user/password
+    213
+    214         >>> httpbin = getfixture('httpbin')
+    215         >>> r = http('-a', 'user:pw', httpbin.url + '/basic-auth/user/pw')
+    216         >>> type(r) == StrCLIResponse
+    217         True
+    218         >>> r.exit_status
+    Expected:
+        <ExitStatus.SUCCESS: 0>
+    Got:
+        ExitStatus.SUCCESS
+
+A simple replacement of the expected output however breaks the doctest on Python 3.9.
+
+This is the best solution I could think of
+that keeps the docstring readable and doctest working in Pythons both old and new.
+
+
+PS I really hope this is the last one for today, sorry for the strom :)",1
+89,httpie/httpie,hroncok,Declare a [test] extra with test dependencies,"Since `python setup.py test` is deprecated and `tests_require` is only used by that,
+this allows to programmatically read the tests dependencies from the metadata.
+
+This allows us to fetch the test dependencies in Fedora build instead of copy pasting them to a manual declaration.",1
+90,httpie/httpie,hroncok,Remove an useless shebang form non-executable file,"Shebangs have no function in non-executable files.
+This file does not need to be directly executed.",1
+91,httpie/httpie,hroncok,pytest: Add hidden files to norecursedirs,"The default value already contains this,
+but when setting a custom one, it was overridden.
+
+In Fedora, we build the package in `.pyproject-builddir` and not ignoring it confuses pytest:
+
+    _pytest.pathlib.ImportPathMismatchError: ('httpie.__main__', '/builddir/build/BUILD/httpie-2.4.0/.pyproject-builddir/pip-req-build-aedma65c/build/lib/httpie/__main__.py', PosixPath('/builddir/build/BUILD/httpie-2.4.0/.pyproject-builddir/pip-req-build-aedma65c/httpie/__main__.py'))",1
+92,httpie/httpie,BoboTiG,Modernize the code base with f-strings in tests,"The code base is now using `f-string` almost everywhere instead of a mix of `str.format()`, `str + str + str` and `'%s...%d' % (arg1, arg2)`.
+
+Simple concatenations were kept for readability purpose.",1
+93,httpie/httpie,BoboTiG,Modernize the code base with f-strings,This PR is targetting the source code. Another one will come tomorrow to do the same clean-up in tests.,1
+94,httpie/httpie,calwas,Edit README Chapters 1-7 with suggested edits,"This PR performs the edits suggested from the original PR's doc_update branch.
+
+Note: I'm sorry for the PR/branch confusion. I had to create a new doc_update2 sub-branch from doc_update.",2
+95,httpie/httpie,jfgcf,Implements - #946 and #1007  - CES Class,"In the first issue, #946  , we implemented a way so that the user can read the authentication data is  from a JSON file and does not need to manually fill in the authentication data.
+
+In the second issue, #1007 , we implemented a new feature that allows the user to have the possibility to present the output message in a JSON format as follows:
+
+```
+{""Request"":{
+    ""headers"":{request headers},
+    ""body"": {request body}
+    },
+  ""Response"":{
+    ""headers"":{response headers},
+    ""body"": {response body}
+    }
+}
+```",16
+96,httpie/httpie,BoboTiG,Add --raw to allow specifying the raw request body without extra processing,"Addressing #534.
+
+In short, the new argument allows to use that synxtax:
+```shell
+$ http --raw '{""name"": ""John""}' pie.dev/post
+```
+
+Instead of:
+```shell
+$ echo '{""name"": ""John""}' | http pie.dev/post
+$ http pie.dev/post <<<'{""name"": ""John""}'
+```
+
+
+",4
+97,httpie/httpie,BoboTiG,Add --data-raw argument to POST data,"A first draft for `curl --data-raw` support. It would close #534.
+
+Notes:
+1. `--data-raw` has been chosen because it is the one from `curl --data-raw` we are emulating here.
+2. I wanted to use a short argument version, like `-d`, but it is already used for `--download, -d`. I initially used `-D`, and can restore it if you prefer.
+   A possible solution would be to rename `--download, -d` to `--download, -dl`, but it may not be possible due to possible breakings everywhere :)
+   I thought we could go with `-D` and then it would be kind of logic to use `--data-binary, -Db` later.
+3. No need to implement `curl --data-urlencode 'name=I am Daniel'` as it is implicitely handled.
+4. That PR does not handle `curl --data 'birthyear=1905&press=OK'`.
+5. That PR does not handle `curl --data-binary ''`.
+
+---
+
+## Single `--data-raw`
+
+Reference:
+```shell
+$ curl --data 'birthyear=1905' -XPOST pie.dev/post
+```
+```json
+{
+  ""args"": {}, 
+  ""data"": """", 
+  ""files"": {}, 
+  ""form"": {
+    ""birthyear"": ""1905""
+  }, 
+  ""headers"": {
+    ""Content-Length"": ""14"", 
+    ""Content-Type"": ""application/x-www-form-urlencoded"", 
+    ""User-Agent"": ""curl/7.64.1""
+  }, 
+  ""json"": null, 
+  ""origin"": ""..."", 
+  ""url"": ""LINK
+}
+```
+
+New argument `--data-raw`:
+```shell
+$ http --data-raw 'birthyear=1905' POST pie.dev/post
+```
+```json
+{
+    ""args"": {},
+    ""data"": """",
+    ""files"": {},
+    ""form"": {
+        ""birthyear"": ""1905""
+    },
+    ""headers"": {
+        ""Content-Length"": ""14"",
+        ""Content-Type"": ""application/x-www-form-urlencoded; charset=utf-8"",
+        ""User-Agent"": ""HTTPie/2.5.0-dev""
+    },
+    ""json"": null,
+    ""origin"": ""..."",
+    ""url"": ""LINK
+}
+```
+
+## Multiple `--data-raw`
+
+Reference:
+```shell
+$ curl --data 'birthyear=1905' --data 'press=OK' -XPOST pie.dev/post
+```
+```json
+{
+  ""args"": {}, 
+  ""data"": """", 
+  ""files"": {}, 
+  ""form"": {
+    ""birthyear"": ""1905"", 
+    ""press"": ""OK""
+  }, 
+  ""headers"": {
+    ""Content-Length"": ""23"", 
+    ""Content-Type"": ""application/x-www-form-urlencoded"", 
+    ""User-Agent"": ""curl/7.64.1""
+  }, 
+  ""json"": null, 
+  ""origin"": ""..."", 
+  ""url"": ""LINK
+}
+```
+
+New argument `--data-raw`:
+```shell
+$ http --data-raw 'birthyear=1905' --data-raw 'press=OK' POST pie.dev/post
+```
+```json
+    {
+        ""args"": {},
+        ""data"": """",
+        ""files"": {},
+        ""form"": {
+            ""birthyear"": ""1905"",
+            ""press"": ""OK""
+        },
+        ""headers"": {
+            ""Content-Length"": ""23"",
+            ""Content-Type"": ""application/x-www-form-urlencoded; charset=utf-8"",
+            ""User-Agent"": ""HTTPie/2.5.0-dev""
+        },
+        ""json"": null,
+        ""origin"": ""..."",
+        ""url"": ""LINK
+    }
+```
+",2
+98,httpie/httpie,BoboTiG,"Prefer usage of ""python -m pip"" instead of ""pip""","It will prevent issues when users think that they are using the correct `pip` version. It can refers to the one from the OS
+Python installation, or even worse to a Python 2 installation. Let's be clear on how to install stuff.
+
+~Also used short version of `pip` arguments, because we are all lazy :)~",2
+99,httpie/httpie,BoboTiG,Prefer usage of pytest rather than py.test,"`py.test` was chosen over `pytest` but it is not planned for removal yet [1].
+Anyway, it is a good thing to ensure we are using the correct Python version
+with the right `pytest` installed, so using `python -m pytest` is recommended.
+
+[1] LINK",1
+100,chrislgarry/Apollo-11,SMPearly,Typo,"""Clokjob"", is changed to ""Clockjob"".",1
+101,chrislgarry/Apollo-11,arda-guler,Proof Comanche055\P40-P47 #236 (pg: 0716-0736),"- Fixed indentation in program description comments
+- Fixed punctuation
+- Fixed wrong number of empty lines
+- Fixed spaces and typos
+
+This PR is the third and last part of proof-reading Comanche055 P40-P47.
+
+@wopian In line 2300 (line 2330 before my edits), there seems to be a single line of code that doesn't appear in the scans. I couldn't really figure out what that's about by checking the file history on Github, so I left it there for now since it might be important.
+
+`SBANK=	PINSUPER	# Added by RSB 2009`",1
+102,chrislgarry/Apollo-11,arda-guler,Proof Comanche055\P40-P47 #236 (pg: 0700-0715),"- Fixed spaces, empty lines and punctuation
+- Removed non-existent comment on line 948.",1
+103,chrislgarry/Apollo-11,arda-guler,Proof Comanche055\P40-P47 #236 (pg: 0684-0699),"- Fixed typos and spaces in comments.
+- Added one missing comment at line 300.
+- Fixed one character typo in code on line 344. (I think someone read number 8 as a 6)
+- There is something weird at line 624 - a portion of the comment was not in the scan but appears in the file on Github. My change makes it match the scan exactly, but it appears that the comment might be ""cut off"" (?)",2
+104,chrislgarry/Apollo-11,arda-guler,Minor fixes to Turkish readme,"- Wording change in favor of the commonly used term for ""command module"".
+The word ""komuta"" (not ""yönetim"") is used to refer to the CM.
+
+- Change word mistakenly translated as ""program"" into ""programming"".
+Margeret H. Hamilton, Colossus _**Programming**_ Leader
+
+- Stay true(-er) to the original explanation in first paragraph.
+Be clearer on what's considered an issue - a difference between the original scans and the repository.
+",1
+105,chrislgarry/Apollo-11,DinoSaulo,Correções de ortografia,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",1
+106,chrislgarry/Apollo-11,taismassaro,Proof CONIC_SUBROUTINES (pages 1190-1204) #571,"Part 3 of 3 of CONIC_SUBROUTINES, proofed pages 1175-1189.
+
+PR for part 1: #844
+PR for part 2: #845 
+
+Closes #571 
+",6
+107,chrislgarry/Apollo-11,taismassaro,Proof CONIC_SUBROUTINES (pages 1175-1189) #571,"Part 2 of 3 of CONIC_SUBROUTINES, proofed pages 1175-1189.
+
+PR for part 1: #844 ",3
+108,chrislgarry/Apollo-11,taismassaro,Proof CONIC_SUBROUTINES (pages 1159-1174)  #571,"Part 1 of 3 of CONIC_SUBROUTINES, proofed pages 1159-1174.
+",16
+109,chrislgarry/Apollo-11,crhaugen,Proof P34-35_P74-75 #615 (pg: 0692-0702),"Scans proofed: (0692-0702)
+
+I wasn't sure about spacing in some of the comments, didn't see anything about it in the guidelines, I tried to match the scans as much as I could. 
+
+Also did the change of two dashes to one dash. 
+
+
+Let me know if you want me to change anything.
+",10
+110,chrislgarry/Apollo-11,crhaugen,Proof P34-35_P74-75 #615 (pg: 0680-0691),"Scans proofed: (0680-0691)
+
+Same thing about the dashes: Use of 2 dashes ""--"" was used throughout, and the scans looked like only one dash ""-"" was used.
+
+I wasn't sure about spacing in the comments, didn't see anything about it in the guidelines, I tried to match the scans as much as I could. 
+
+Let me know if you want me to change anything.
+",9
+111,chrislgarry/Apollo-11,serialhex,"Proof P51-P53 pages 976-983, continuation of issue #617","This is the last PR for issue #617, pages 976-983. Everything is done and ready to be merged!
+",1
+112,chrislgarry/Apollo-11,serialhex,"Proof P51-P53 pages 966-975, continuation of issue #617","Continuing to proof P51-P53.  One more section to go!
+",1
+113,chrislgarry/Apollo-11,lewisjb,Proof ANGLFIND (pages 405-409),Some whitespace changes and an incorrect character,1
+114,chrislgarry/Apollo-11,lewisjb,Proof ANGLFIND (pages 399-404),"Proofed pages 399-404, only found an issue on page 401 to do with whitespace and an added bracket",1
+115,chrislgarry/Apollo-11,dimitraz,Proof T4RUPT_PROGRAM #642 (pages 172-189),"Minor changes, mainly a few small typos in the comments
+
+Issue link: LINK
+First PR: LINK
+",1
+116,chrislgarry/Apollo-11,dimitraz,Proof T4RUPT_PROGRAM #642 (pages 155-171),"Minor changes, mainly a few typos in the comments
+
+Issue link: LINK
+Second PR: LINK",1
+117,chrislgarry/Apollo-11,crhaugen,Proof P34-35_P74-75 #615 (pg: 0668-0679),"Scans checked: (06680-0679)
+
+minor changes here,  mostly just spacing in the comments.
+
+Let me know if you want me to change anything. ",9
+118,chrislgarry/Apollo-11,crhaugen,Proof P34-35_P74-75 #615 (pg: 0658-0667),"Scans proofed: (0658-0667)
+
+Two things I wasn't sure about and I didn't find anything in the guidelines about:
+
+the use of 2 dashes ""--"" was used throughout, and the scans looked like only one dash ""-"" was used:
+![image](LINK
+
+using only one dash also makes the words align closer to how they are in the slides, but let me know and I can change them back.
+
+The other thing was this word I'm not sure about: 
+![image](LINK
+
+Looks to me more like a 'W' as a typo, and not an 'M' but it's hard to tell. Let me know if you want it as an 'M'
+",10
+119,chrislgarry/Apollo-11,serialhex,"Proof P51-P53 pages 956-965, continuation of issue #617","This is for pages 956-965. It does not overlap my previous PRs and can be (or should be able to be) merged separately.
+
+Sorry it took me a little longer to get to this, work's been busy.  The rest will be done as soon as I can.",1
+120,chrislgarry/Apollo-11,taismassaro,Proof PHASE_TABLE_MAINTENANCE #620,"Fixed typos, mainly with punctuation, and attempted to fix some spacing issues I was able to identify, but was unclear on what to do when comments had an extra space at the beginning. I've seen in some places in the transcript they had an extra tab indentation, so I tried to follow that, but happy to adjust if they should be single spaces.
+",8
+121,chrislgarry/Apollo-11,adreaskar,docs: Spelling corrections in CONTRIBUTING.gr.md,"Fixed some spelling mistakes on the CONTRIBUTING.gr.md file.
+I am a native Greek speaker and propose these changes.
+",1
+122,chrislgarry/Apollo-11,serialhex," Proof P51-P53 pages 946-955, continuation of issue #617",This is for pages 946-955. It does not overlap my previous PRs and can be (or should be able to be) merged separately.,1
+123,chrislgarry/Apollo-11,serialhex,"Proof P51-P53 pages 936-945, continuation of issue #617",This is for pages 936-945.  It does not overlap my previous PR and can be (or should be able to be) merged separately.,2
+124,chrislgarry/Apollo-11,serialhex, Proof P51-P53 #617 ,"I proofed pages 926-365, because of the comment ""Multiple PRs for 10-20 pages at a time are recommended!""  I will be making more PR's to finish out the proofing.
+
+Please let me know of any comments you may have for this, it's mostly whitespace/hyphen shuffling, but that's what a lot of this proofing stuff seems to be.
+
+...also intentionally misspelling words... that too 😛 ",2
+125,chrislgarry/Apollo-11,byt3h3ad,Proof P20-P25 (pages 492 through 501) #612,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",1
+126,chrislgarry/Apollo-11,keunyop,docs: Spelling corrections in Korean README,Spelling Correction,1
+127,chrislgarry/Apollo-11,KanegaeGabriel,Proof SPS_BACK-UP_RCS_CONTROL #639,"This is done as a follow-up to #675, closing #639.
+
+All pages re-checked, @wopian [comments](LINK addressed.",1
+128,chrislgarry/Apollo-11,byt3h3ad,Proof Luminary099/AOSTASK_AND_AOSJOB.agc ,"proof read page 1485 through 1488
+ref: LINK
+LINK
+LINK
+LINK
+
+<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",1
+129,chrislgarry/Apollo-11,carolili,Proof KEYRUPT_UPRUPT #600 ,"* Fix typo UPCK -> UPOK
+* Page 1339
+* Ref. LINK
+
+",1
+130,chrislgarry/Apollo-11,dhivyasreedhar,Proof TJET.LAW #648,"
+
+Proof read transcribed code of TJET_LAW against scans
+Fixed Issue #648 
+Lines: 519
+Page: 1460—1469 (9)
+",1
+131,chrislgarry/Apollo-11,burlakvo,Add Russian CONTRIBUTING,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",3
+132,chrislgarry/Apollo-11,ShadowMitia,Proof P20-P25.agc (Pages 562-569) #231,"These are the first 7 pages of the Commanche055/P20-P25.agc.
+
+Corresponds to section ""RENDEZVOUS NAVIGATION PROGRAM 20"".
+
+Issue #231 
+",1
+133,chrislgarry/Apollo-11,Z1EMN1AK,Update README.pl.md,"Better polish transcription
+
+<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",1
+134,chrislgarry/Apollo-11,Larkooo,Improved french translation of readme,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",1
+135,chrislgarry/Apollo-11,Larkooo,Improved french translation of the contributing md file,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",1
+136,chrislgarry/Apollo-11,andrewrump,Add Danish README & CONTRIBUTION,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",4
+137,chrislgarry/Apollo-11,Naigma,Added galician CONTRIBUTING and README files,"Added the CONTRIBUTING and README files in galician, updated the other .md to include galician on their lists.",11
+138,chrislgarry/Apollo-11,eltociear,Fix some CONTRIBUTING.md,"Fixed below.
+* `Github` -> `GitHub`
+* Document format",1
+139,chrislgarry/Apollo-11,daniel-pro,Updated CONTRIBUTING.it.md,"Rephrased some sentences and corrected some typos here and there.
+
+<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",2
+140,chrislgarry/Apollo-11,sidemt,Proof LUNAR_LANDING_GUIDANCE_EQUATIONS (Page 803-812) #606,"Part 2 of the proofreading PR for issue #606
+Checked pages 803 - 812
+
+Notes:
+(1)
+I'm not sure if the markers at the following parts should be `_` or `-`
+[Page 803]
+L 285, 290 (R0218, R0223 in the original image)
+[Page 804]
+L 368, 372 (0288, 0292 in the original image)
+[Page 805, 806]
+L423-441 (R0338-R0346 in the original image)
+[Page 808]
+L545-555 (R0438-R0446 in the original image)
+
+
+(2)
+At the beginning of Page 806 there is a comment saying:
+> Page 806 actually starts one line earlier but that would separate the markers from their variables
+
+So I did not change this.",1
+141,chrislgarry/Apollo-11,eltociear,update CONTRIBUTING.ja.md,"contents updated.
+
+ref:
+LINK
+
+<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",1
+142,chrislgarry/Apollo-11,FOMILET,创造;;;;,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",1
+143,chrislgarry/Apollo-11,hyperbolic2346,Proof P61-P67 Commache055 #238,"Proofed P61-P67, which are pages 0789-0818 in Comanche055.
+
+Fixes #238 
+",1
+144,chrislgarry/Apollo-11,ngsctt,Proof ASSEMBLY_AND_OPERATION_INFORMATION #568 (PR 2/2),"PR 2 of 2, resolves #568, covering pages 0013–0027.
+
+I've aligned each of the columns and commented out blank lines as with #790.
+
+### Key problems:
+- A lot of commas printed poorly in this set of pages, and I've had to occasionally had to rely on context to figure it out, especially [page 23](LINK (R0836 and R0868), [page 26](LINK (R0937 R0945), [page 27](LINK (R0967).
+- There were also some extremely poorly printed `O`s, some of which could possibly be mistyped `D`s (including on [page 15](LINK at R0612 and R0576).
+- It looks like `V41N72` was misspelt as `V4IN72` on [page 23](LINK at R0851, so I've (un)corrected the code to match.",15
+145,chrislgarry/Apollo-11,HeroicHitesh,PROOF AOSTASK_AND_AOSJOB #565 Pages 1496-1506,"Fixes #565
+
+~~The remaining work is already done by @hyperbolic2346 in #798.~~
+
+Made new commit to complete remaining work.",3
+146,chrislgarry/Apollo-11,dmahely,Proof PINBALL_NOUN_TABLES #622,Pages checked: 311-319,3
+147,chrislgarry/Apollo-11,dmahely,Proof PINBALL_NOUN_TABLES #622,"Pages checked: 301-310
+",3
+148,chrislgarry/Apollo-11,hyperbolic2346,PROOF AOSTASK_AND_AODJOB #565,"Putting this single fix in to get out of the way for @HeroicHitesh, who is going to work on this issue.
+
+Sorry about that.
+
+Partially fixes #565 ",1
+149,chrislgarry/Apollo-11,hyperbolic2346,Proof IMU_MODE_SWITCHING_ROUTINES #588,"Proofed pages 1324-1337
+
+Unsure about some of the changes. I fixed some issued with the original printout like no spaces after a period. Unsure if we want to save those for posterity or fix them.
+
+Partially fixes #588 ",2
+150,chrislgarry/Apollo-11,hyperbolic2346,Proof IMU_MODE_SWITCHING_ROUTINES #588,"This is for proofing pages 1309-1323. Only a hyphenation issue found.
+
+Partially fixes #588 ",1
+151,chrislgarry/Apollo-11,r-sreesaran,Proof WAITLIST #651,"Hi @wopian, can you please review this PR.
+
+I had checked all the pages for issues in comments and changed it as per images 
+",1
+152,chrislgarry/Apollo-11,Sudhish2607,Proof ATTITUDE_MANEUVER_ROUTINE #569 (PR 2/2),"Hi @wopian, can you please review this PR.
+
+I've broken down the issue #569 into following 2 parts:
+1. [Part 1: PR#792](LINK
+2. Part 2: this PR
+
+Considered below rules while Proofreading:
+- [spaces](LINK
+- [comments](LINK
+- [typographic-errors](LINK
+- [line-breaks](LINK
+
+Fixes:
+- Space and Indentation(I ensured that the indentation in comments exactly matches the scan)
+- Typographical errors (changed back to the words/ characters in the scan)
+- Line breaks (matches the scan)
+ 
+Pages: 0353-0363",10
+153,chrislgarry/Apollo-11,ishaterdal,Proof INTEGRATION_INITIALIZATION #593 Pages 1216-1226,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",3
+154,chrislgarry/Apollo-11,Sudhish2607,Proof ATTITUDE_MANEUVER_ROUTINE #569 (PR 1/2),"Hi @wopian, can you please review this PR.
+
+I've broken down the issue #569 into following 2 parts:
+1. Part 1: this PR
+2. [Part 2: PR#794](LINK
+
+Considered below rules while Proofreading:
+- [spaces](LINK
+- [comments](LINK
+- [typographic-errors](LINK
+- [line-breaks](LINK
+
+Fixes:
+- Space and Indentation(I ensured that the indentation in comments exactly matches the scan)
+- Typographical errors (changed back to the words/ characters in the scan)
+- Line breaks (matches the scan)
+ 
+Pages: 0342-0352",11
+155,chrislgarry/Apollo-11,CxrlosKenobi,docs: add Assamese to language list,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",15
+156,chrislgarry/Apollo-11,ngsctt,Proof ASSEMBLY_AND_OPERATION_INFORMATION #568 (PR 1/2),"PR 1 of 2, partially resolves #568, covering pages 0001–0012.
+
+I've aligned each of the columns *precisely* with the source, since it's all a long comment.
+
+There's a `D` on [page 5](LINK at [R0122](LINK (L176 in the PR) which looks a lot like an `O`. I've left it as a `D` because it's not clear that it's a typo in the source, rather than a poorly-printed `D`.
+
+### Corrections made:
+
+- [Page 1](LINK
+    - Remove empty line between page number and content
+    - Comment out blank line (L30) after R00002; add missing blank line
+    - R000025 (L32) realign whitespace
+    - R00003 (L33) realign whitespace
+    - R000035 (L34) realign whitespace
+    - Comment out blank line (L35) after R000035; add missing blank line
+    - R00005 (L38) replace comma not in scan with space; remove comma not in scan; remove space not in scan
+    - Comment out blank line (L40) after R00006; add missing blank line
+    - R00007 (L42) realign whitespace
+- [Page 2](LINK
+    - Remove empty line between page number and content
+    - Add missing blank line (L46) after R0001
+    - R0002–R0008 (L47–52) remove indent not in scan
+    - Comment out blank line (L53) after R0008; add missing blank line
+    - R0010–R0048 (L56-94) realign whitespace
+- [Page 3](LINK
+    - R0060 (L107) remove extra hyphen
+    - R0049–R0098 (L96–145) realign whitespace
+- [Page 4](LINK
+    - R0099–R0102 (L147–150) realign whitespace
+    - Add second blank line (L152) after R0102
+    - R0107 (L157) (un)correct `AVAILABILITY` → `AVAILABLITY`
+    - R0103–R0112 (L153–162) realign whitespace
+- [Page 5](LINK
+    - P0113 (L165) realign whitespace
+    - Comment out empty line (L166) after P0113
+    - Comment out empty line (L168) after R0114
+    - R0115–R0122 (L169–176) realign whitespace
+    - R0126–R0132 (L180–186) realign whitespace
+    - R0139 (L193) remove comma not in scan
+    - R0136–R0140 (L190–194) realign whitespace
+    - R0142 (L196) realign whitespace
+    - R0145–R0152 (L199–206) realign whitespace
+- [Page 6](LINK
+    - Comment out empty line (L212) after P0155
+    - R0156–R0160 (L213–217) realign whitespace
+    - R0163–R0166 (L220–223) realign whitespace
+    - R0168–R0174 (L225–231) realign whitespace
+    - R0176 (L233) correct `POSITON` → `POSITION`
+    - R0180 (L237) remove period not in scan
+    - R0176–R0183 (L233–240) realign whitespace
+    - R0187 (L244) add missing space
+    - R0192 (L249) remove period not in scan
+    - R0185–R0199 (L242–256) realign whitespace
+    - R0201 (L258) realign whitespace
+- [Page 7](LINK
+    - R0205–R0209(L263–267) realign whitespace
+    - R0212 (L270) correct `P00` to `POO`, based on scan and 497515d
+    - R0211–R0213 (L269–271) realign whitespace
+    - R0215 (L273) realign whitespace
+- [Page 8](LINK
+    - Remove empty line (L282) after R0221 not in scan
+    - Comment out empty line (L284) after R0223
+    - Add empty line (L286) after R0224
+    - R0224–R0273 (L285–325) realign whitespace
+    - R0227–R0231 (L288–292) capitalize `x`s
+    - R0240–R0244 (L301–302) capitalize `x`s
+    - R0247–R0252 (L306–309) capitalize `x`s
+    - R0256–R0260 (L313–315) capitalize `x`s
+    - R0262 (L317) capitalize `x`s
+    - R0264–R0267 (L319–321) capitalize `x`s
+    - R0269–R0273 (L323–325) capitalize `x`s
+- [Page 9](LINK
+    - R0274–R0317 (L327–356) realign whitespace
+    - R0274 (L327) capitalize `x`s
+    - R0277 (L330) capitalize `x`s
+    - R0282–R0316 (L335–355) capitalize `x`s
+- [Page 10](LINK
+    - Add blank line (L360) after P0318
+    - R0320–R0383 (L361–408) realign whitespace; capitalize `x`s
+- [Page 11](LINK
+    - R0433 (L449) remove restriction not in scan
+    - R0384–R0441 (L410–456) realign whitespace; capitalize `x`s
+- [Page 12](LINK
+    - R0475 (L484) remove space not in scan
+    - R0443–R04771 (L458–486) realign whitespace; capitalize `x`s",12
+157,chrislgarry/Apollo-11,murtazahatim,Proof Q_R-AXIS_RCS_AUTOPILOT #625 #1451-1459,"Closes #625 Proofed Pages 1451-1459 (2nd Half of file)
+<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",3
+158,chrislgarry/Apollo-11,murtazahatim,Proof Q_R-AXIS_RCS_AUTOPILOT #625 #1442-1450,"#625 Proofed Pages 1442-1450 (50% of file)
+<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->",4
+159,chrislgarry/Apollo-11,ishaterdal,Proof INTEGRATION_INITIALIZATION #593 Page #1205-1215,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",6
+160,chrislgarry/Apollo-11,billypoke,Proof BURN_BABY_BURN--MASTER_IGNITION_ROUTINE #570,"Closes #570 
+
+Wasn't sure what should be done with the anecdote that occurs on lines 34-44 in the converted source code but not in the scans. This was very interesting to proof, very cool project as well. 😄 
+",1
+161,chrislgarry/Apollo-11,ngsctt,Proof P32-P35_P72-P75 #614 (PR 2/2),"PR 2 of 2, resolves #614, covering pages 0632–0650
+
+I've treated indentation and empty lines within comment blocks the same as in #782.
+
+The only major concerns were:
+
+1. At [5513](LINK ([page 633](LINK it looks like `RA1` has been misspelt in the comment as `RAI`. I've corrected it, but I'm not completely 100% confident the character is a letter `I` instead of a poorly-printed digit `1`
+2. At [5769](LINK and [5783](LINK  (both on [page 638](LINK the code has a (subroutine?) named `K10RK2`, however looking at both places in the scan, I'm pretty confident it's the letter `O` and not the digit `0`. I've corrected it to be `K1ORK2` in both places.
+
+### Corrections made
+
+- [Page 632](LINK
+    - P5000 (L645) replace `*`s with `.`s; add spaces to match alignment in scan
+    - 5417 (L672) remove space not in scan
+    - 5419 (L676) add spaces to match alignment in scan; remove extra hyphen
+    - 5420 (L678) add spaces to match alignment in scan
+    - 5422 (L682) add spaces to match alignment in scan
+    - 5423 (L684) remove extra hyphen
+    - 5424 (L686) add spaces to match alignment in scan
+    - 5502 (L694) (un)correct `INDICATOR` → `INDICATR`
+- [Page 633](LINK
+    - 5504 (L697) remove comma not in scan
+    - 5505 (L698) remove comma, remove space not in scan
+    - **5513 (L706) (un)correct `RA1` → `RAI`**; realign whitespace in comment
+    - 5515 (L708) realign whitespace in comment
+    - 5518 (L711) realign whitespace in comment
+    - 5520 (L713) realign whitespace in comment
+    - 5523 (L716) realign whitespace in comment
+    - 5525 (L718) realign whitespace in comment
+    - 5528 (L721) realign whitespace in comment
+    - 5529 (L722) realign whitespace in comment
+    - 5530 (L723) remove tab not reflected in scan
+    - 5531 (L724) realign whitespace in comment
+    - 5536 (L729) realign whitespace in comment
+    - 5538 (L731) realign whitespace in comment
+- [Page 634](LINK
+    - 5577 (L771) remove space in comment not in scan
+- [Page 635](LINK
+    - 5610 (L810) realign whitespace in comment
+    - 5614 (L814) correct `B38` → `B36`; realign whitespace in comment
+    - 5625 (L825) realign whitespace in comment
+    - 5632 (L832) correct `B-14` → `B-45`; realign whitespace in comment
+    - 5641 (L841) realign whitespace in comment
+    - 5643 (L843) remove space in comment not in scan; realign whitespace in comment
+- [Page 636](LINK — no discrepancies found
+- [Page 637](LINK
+    - 5744 (L937) remove space in comment not in scan
+    - 5747 (L940) remove spaces in comment not in scan; realign whitespace in comment
+    - 5749 (L942) realign whitespace in comment
+    - 5750 (L943) realign whitespace in comment
+    - 5751 (L944) realign whitespace in comment
+    - 5753 (L946) realign whitespace in comment
+    - 5754 (L947) realign whitespace in comment
+    - 5755 (L948) remove spaces in comment not in scan; realign whitespace in comment
+    - 5756 (L949) realign whitespace in comment
+- [Page 638](LINK
+    - 5757 (L951) realign whitespace in comment
+    - 5759 (L953) realign whitespace in comment
+    - 5762 (L956) remove spaces in comment not in scan
+    - 5764 (L958) remove spaces in comment not in scan; realign whitespace in comment
+    - 5766 (L960) realign whitespace in comment
+    - 5767 (L961) remove spaces in comment not in scan; realign whitespace in comment
+    - **5769 (L963) correct `K10RK2` → `K1ORK2` in code**
+    - **5783 (L977) correct `K10RK2` → `K1ORK2` in code**; realign whitespace in comment
+    - 5785 (L979) remove space in comment not in scan
+    - 5786 (L980) realign whitespace in comment
+    - 5787 (L981) realign whitespace in comment
+    - 5788 (L982) remove space in comment not in scan
+    - 5797 (L991) remove spaces in comment not in scan
+    - 5801 (L995) remove spaces in comment not in scan; realign whitespace in comment
+    - 5803 (L997) move comment up from line below; realign whitespace
+    - 5805 (L999) move comment up from line below; realign whitespace
+- [Page 639](LINK
+    - 5807 (L1002) realign whitespace in comment
+    - 5812 (L1007) realign whitespace in comment
+    - 5813 (L1008) remove spaces in comment not in scan; realign whitespace in comment
+    - 5814 (L1009) realign whitespace in comment
+    - 5816 (L1011) realign whitespace in comment
+    - 5817 (L1012) remove spaces in comment not in scan
+    - 5822 (L1017) realign whitespace in comment
+    - 5825 (L1020) realign whitespace in comment
+    - 5828 (L1023) realign whitespace in comment
+    - 5829 (L1024) realign whitespace in comment
+- [Page 640](LINK
+    - 5892 (L1088) move comment down from line above
+- [Page 641](LINK
+    - 5914 (L1111) remove space in code not in scan
+    - 5920 (L1117) remove space in code not in scan
+- [Page 642](LINK
+    - P6000 (L1154) replace `*`s with `.`s; add spaces to match alignment in scan
+    - Add empty line (L1157) after R6050
+- [Page 643](LINK
+    - P6200 (L1191) replace `*`s with `.`s; add spaces to match alignment in scan
+- [Page 644](LINK
+    - P7000 (L1203) replace `*`s with `.`s; add space to match alignment in scan
+- [Page 645](LINK
+    - P7400 (L1221) replace `*`s with `.`s; add space to match alignment in scan
+    - Add empty line (L1224) after R7450
+- [Page 646](LINK
+    - P7800 (L1245) replace `*`s with `.`s; add space to match alignment in scan
+- [Page 647](LINK
+    - P8000 (L1260) replace `*`s with `.`s; add spaces to match alignment in scan
+    - Add empty line (L1263) after R8050
+- [Page 648](LINK
+    - 8143 (L1312) realign whitespace in comment
+    - 8145 (L1314)  realign whitespace in comment
+    - 8152 (L1321) remove space in code not in scan
+    - 8153 (L1322)  realign whitespace in comment
+    - 8155 (L1324)  realign whitespace in comment
+    - 8156 (L1325)  realign whitespace in comment
+    - 8157 (L1326)  realign whitespace in comment
+    - 8161 (L1330)  realign whitespace in comment
+    - 8162 (L1331)  realign whitespace in comment
+    - 8166 (L1335)  realign whitespace in comment
+    - 8167 (L1336)  realign whitespace in comment
+    - 8168 (L1337)  remove space in code not in scan
+    - 8169 (L1338)  realign whitespace in comment
+    - 8175 (L1344) remove space in code not in scan
+    - 8176 (L1345) realign whitespace in comment
+    - 8179 (L1348) realign whitespace in comment
+- [Page 649](LINK
+    - 8199 (L1362) remove extra hyphen in comment
+- [Page 650](LINK
+    - P8201 (L1366) replace `*`s with `.`s; add spaces to match alignment in scan
+    - Add empty line (L1369) after R8202
+    - R8203 (L1370) realign whitespace
+    - R8204 (L1371) realign whitespace",18
+162,chrislgarry/Apollo-11,iamarkaj,Fix typo in বাংলা README md file,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",1
+163,chrislgarry/Apollo-11,ngsctt,Proof P32-P35_P72-P75 #614 (PR 1/2),"PR 1 of 2, partially resolves #614, covering pages 0618–0631
+
+I've left the indentation as it was in the file, using tabs instead of spaces. I've also commented out empty lines within comment blocks earlier in the file, to be consistent with the rest of the comment blocks.
+
+I've also left the `•` characters as `*` ([P3800](LINK [P4600](LINK [P4800](LINK
+
+### Corrections made:
+
+- [Page 618](LINK
+    - R0011 (L32) remove extra hyphen
+    - R0014 (L37) remove word ""TIME"" not in scan
+    - R0015 (L38) remove extra hyphen
+    - R0021 (L46) (un)correct typo in scan: ""FLIGHT"" → ""FLIGNT""
+    - R0043 (L79) remove comma not in scan
+    - Comment out empty lines within comment blocks, for consistency
+- [Page 619](LINK
+    - R0045 (L82) add missing period
+    - R0054 (L94) correct ""BY"" → ""ON""
+    - R0061 (L103) remove extra hyphen
+    - R0062 (L105) remove extra hyphen
+    - R0066 (L114) remove extra hyphen
+    - R0075 (L122) add missing hyphen
+    - R0077 (L126) remove word ""THE"" not in scan
+    - Remove line (L131) at end of page (after R0111) not reflected in scan
+    - Comment out empty lines within comment blocks, for consistency
+- [Page 620](LINK
+    - R0114 (L134) remove period not in scan
+    - Remove empty line (L137) not in scan (after R0116)
+    - R0137 (L145) remove extra hyphen
+    - R0138 (L146) remove extra hyphen
+    - R01395 (L154) remove extra hyphen
+    - R01396 (L155) remove extra hyphen
+    - R01402 (L162) correct ""PROGRAM"" → ""PROGRAMS""
+    - R01404 (L165) remove extra hyphen
+    - R01406 (L167) remove extra hyphen
+    - R01408 (L169) remove extra hyphen
+    - Comment out empty lines within comment blocks, for consistency
+- [Page 621](LINK — no discrepancies found
+- [Page 622](LINK — no discrepancies found
+- [Page 623](LINK — no discrepancies found
+- [Page 624](LINK
+    - Add missing empty line (L325) after P1010
+    - R1011 (L325) correct ""LOC"" → ""LOG""; remove extra hyphen
+    - R1012 (L325) correct ""WHITE, P."" → ""WHITE.P""; correct ""DATE:"" → ""DATE""; correct ""1 JUNE 67"" → ""1JUNE67""
+    - Remove empty line (L327) not in scan (after R1013)
+    - R1026 (L347) (un)correct ""THEREFORE"" → ""THERFORE""; remove extra hyphen
+    - R1036 (L361) (un)correct ""MINIMIZED"" → ""MINMIZED""
+    - Add missing empty line (L365) after R1038
+    - R1039 (L368) remove space before tab
+- [Page 625](LINK
+    - R1052 (L386) remove period
+    - R1061 (L397) remove extra hyphen
+    - R1062 (L399) (un)correct ""VEHICLE"" → ""VEGICLE""; remove extra hyphen
+    - R1066 (L404) remove extra hyphen
+    - R1069 (L408) remove extra hyphen
+    - R1075 (L416) replace period with hyphen
+    - R1111 (L424) remove extra hyphen
+- [Page 626](LINK
+    - R1112 (L426) remove extra hyphen
+    - R1137 (L437) remove extra hyphen
+    - R11394 (L444) correct ""DELLVEET2"" → ""DELVEET2""; remove extra hyphen
+    - Remove empty line (L447) before R11402 not in scan
+    - R11404 (L450) remove extra hyphen
+    - R11405 (L451) remove period
+    - R11406 (L452) remove extra hyphen
+    - R11407 (L453) remove period
+    - R11408 (L454) remove extra hyphen; remove period
+    - R11409 (L455) remove period
+    - R1141 (L456) remove period
+- [Page 627](LINK — no discrepancies found
+- [Page 628](LINK — no discrepancies found
+- [Page 629](LINK
+    - P3800 (L572) correct ""ADFLAG"" → ""AVFLAGA""
+- [Page 630](LINK
+    - P4600 (L598) add spaces to match alignment in scan
+    - R4652 (L603) added space to reflect alignment in scan
+    - 47024 (L612) left as ""SXA,1"" not ""SXA.1""
+- [Page 631](LINK — no discrepancies found",9
+164,chrislgarry/Apollo-11,dhairyagada,Proof P-AXIS_RCS_AUTOPILOT #610 ,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+ Checked from page 1421 to page 1432",5
+165,chrislgarry/Apollo-11,cbohn4,Proof DISPLAY_INTERFACE_ROUTINES Pages 1341-1356,"I have gone through the first 15 pages of DISPLAY_INTERFACE_ROUTINES #575  . 
+
+The only question I have is if documentation indents should be translated over from the images to the agc file. An example is line 606 with its counterpart near the bottom of page 1356. ",4
+166,chrislgarry/Apollo-11,Illusion47586,added Dark mode to website and styled it up a little,"![image](LINK
+![image](LINK
+",2
+167,chrislgarry/Apollo-11,Atknssl,Proof FRESH_START_AND_RESTART #584,"I have proofed from page 211 to page 225. Pages 226-237 will be proofed in another pull request, as recommended in #584. If it is okay for me to proof every page in this pull request, please let me know.",3
+168,chrislgarry/Apollo-11,vat0599,Add English Code of Conduct,"closes #773
+ 
+Code of conduct from LINK",1
+169,chrislgarry/Apollo-11,vat0599,#773 open source code of conduct,"Closes #773 for code of conduct
+",1
+170,chrislgarry/Apollo-11,serialhex,Proof INTERPRETER #217 pages 1120 to 1129,"1120-1129 of LINK
+
+A couple of notes while reviewing my PR:
+
+## White space
+I tried to match the indentation and white space *exactly*, which means that many paragraphs begin with `\t   ` (3 spaces).  You can see this when looking at line 420 of the file, and comparing it to page 1120 in the Comanche scans.  The leading ""S"" is over the ""D"" in the following line, and looking down, over the ""L"" in the word ""LAST"" for the code.
+
+The entire file seems to follow this convention, but while the previous 419 lines are said to have been proofed, this is not reflected in the file.  Looking back 1 page, and at line 387, it should be indented, and is not.  Just giving reviewers a heads-up and if you want my version reverted I will.  If you want the rest of the file changed to match let me know and I'll make another PR with those changes.
+
+Also, there is some indentation-fiddly-ness that exists starting on line 551; page 1125, and the same thing happens starting on 650; page 1128.  Tabs followed by spaces to get letters to line up properly.
+
+## Bad code?
+Starting at line 662; page 1128 there is this code:
+
+```agc
+		# Was CAF --- RSB 2009.
+		CA	0		# GET BASE ADDRESS OF CADR LIST.
+```
+
+If you look at the scan though, the code should be:
+
+```agc
+		CAF	0		# GET BASE ADDRESS OF CADR LIST.
+```
+
+I don't know enough about AGC assembler to know if this is a bug that was fixed and needs to remain different from the scans, __or__ if someone thought it was a bug, changed it, and now the running code doesn't match the scans and the original.  I am more than happy to change it to match the scan, but I didn't want to change a bugfix and potentially reintroduce such a thing to the system (as there may be people running this code).
+
+Thank you for your time, and please let me know if there are any changes that should be made.",1
+171,chrislgarry/Apollo-11,Atknssl,Proof INTERPRETIVE_CONSTANT #596,#596 Completely proofed.,2
+172,chrislgarry/Apollo-11,sidemt,Proof LUNAR_LANDING_GUIDANCE_EQUATIONS (Page 798-802) #606,"Issue #606 
+Checked pages 798 - 802
+
+Note:
+L 136-137 (Page 800)
+It differs from the original image but there is a comment ""RSB 2009: Not originally a comment."" so I left it as-is.
+```agc
+# STERN					# RSB 2009: Not originally a comment.
+		READ CHAN30
+```
+
+
+<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",1
+173,chrislgarry/Apollo-11,dmahely,Proof DOWNLINK_LISTS #576,Proofed entire `DOWNLINK_LISTS.agc` file and made necessary changes. Most of the changes are space changes with a couple of misspellings.,3
+174,chrislgarry/Apollo-11,SeboPG,Update CONTRIBUTING.md,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",1
+175,chrislgarry/Apollo-11,matthewlee626,Proof ASCENT_GUIDANCE #567,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",2
+176,chrislgarry/Apollo-11,GintasS,Improved existing Lithuanian contribution file.,"Improved existing contributing file with additional words, sentence structure, some grammar mistakes were fixed.",2
+177,chrislgarry/Apollo-11,byt3h3ad,Update README.as_in.md,"Fixed spelling mistakes.
+
+<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",1
+178,chrislgarry/Apollo-11,gagassurya19,Add Bahasa Indonesia CONTRIBUTING,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",2
+179,chrislgarry/Apollo-11,adreaskar,Update README.gr.md,"Fixed typo in Greek README md file.
+",1
+180,chrislgarry/Apollo-11,adricasi,Add [Catalan] [CONTRIBUTING],"New CONTRIBUTING PRs: adricasi
+**Add Catalan Contributing**",3
+181,chrislgarry/Apollo-11,serialhex,Proof POWERED_FLIGHT_SUBROUTINES #624,"Same as previous, but I fixed all the white space to match __*exactly*__, and changed it so only tabs are white space in the code.  This does make lines 146 and 312 look a little weird.  This is the price we pay for using tabs.",4
+182,chrislgarry/Apollo-11,wopian,"Revert ""Proof POWERED_FLIGHT_SUBROUTINES #624""",Reverts chrislgarry/Apollo-11#754,1
+183,chrislgarry/Apollo-11,joshuaharmsen845,Proof MEASUREMENT_INCORPORATION.agc #608,"Proofed all pages, let me know if anything needs changing or an additional look.",1
+184,chrislgarry/Apollo-11,zpeters,Proof TRIM_GIMBAL_CNTROL_SYSTEM #649,"1. Rename file, it was noticed that it should be TRIM_GIMBAL_CONTROL_SYSTEM.agc
+2. Corrected (i believe) a code typo.  On line 68 replaced ""D"" with ""O"".  I compared this to multiple ""O"" characters and to me this looked correct 
+3. Fixed spacing issues in comments.  Reformatted to match the spacing in the scans exactly
+4. Removed extra blank lines at the end of the file",1
+185,chrislgarry/Apollo-11,GannonTdW,Update FR CONTRIBUTING,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",2
+186,chrislgarry/Apollo-11,serialhex,Proof POWERED_FLIGHT_SUBROUTINES #624,"Proofread all comments and code.  There are a few comments relating to white space.
+
+1. I used the white space conventions listed in CONTRIBUTING.md, namely:
+  * Single space for new words.
+  * Double space for new sentences.
+  * Triple space for indentations.
+
+I call this out specifically because the scans (at least for this file) seem to use 4 spaces for indentation and 3 spaces for new sentences.  For example, in the following image the leading `C` in `CDUTRIG` would be over the `I` in `COSINES` if it used 3 spaces instead of 4, but instead it is over the `E`.  Similarly, on the 4th line (there's and example on the 3rd but it's easier to see on the 4th) the period at the end of the line corresponds to a space above it, and then there are 3 spaces before the `T` in `THESE` starts.
+
+![Scan page 1259](LINK
+
+2. Some of the code seem to use spaces and tabs instead of just tabs.  I mentioned it in the issue here: LINK so I won't repeat myself.
+
+Other than that this PR should be bug-compatible with the scans! :stuck_out_tongue_winking_eye: ",1
+187,chrislgarry/Apollo-11,iigmir,Update CONTRIBUTING.zh_tw.md,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",9
+188,chrislgarry/Apollo-11,charlottemach,Proof AGC_BLOCK_TWO_SELF_CHECK.agc #562,"Checked all pages (1284—1293)
+
+Let me know if the indentation changes for the comments are actually wanted like this!",1
+189,chrislgarry/Apollo-11,Harivind,Proof IMU_PERFORMANCE_TESTS_4 #589,"Line 276, MAKE to MADE, standardised the spacing
+
+<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",1
+190,chrislgarry/Apollo-11,murtazahatim,Proof EXECUTIVE #579,"Closes#579 : Proofed the entire file
+<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+
+
+",1
+191,chrislgarry/Apollo-11,sidemt,Proof DOWN_TELEMETRY_PROGRAM #577,"Issue #577: Proofed the entire file.
+
+- Some questions. I couldn't distinguish commas and periods in the following lines.
+
+L70 (Page 988, R0052) the one at `(SUNDANCE,LUMINARY)`
+```
+#	4.	NON-V37 SELECTABLE TYPE PROGRAMS(E.G. AGS INITIALIZATION(SUNDANCE,LUMINARY) AND P61-P62
+```
+
+L79 (Page 988, R0059)
+```
+#	LDATALST,DNTMBUFF TO DNTMBUFF +21D,TMINDEX,DNQ.
+```
+
+L346 (Page 995, R0328)
+```
+DEBRIS- DUMPLOC, DUMPSW, DNTMGOTO, EBANK AND CENTRAL REGISTERS
+```
+
+- I fixed a lot of indentations according to [CONTRIBUTING.md#spaces](LINK I thought this rule was applicable to the numbered lists in this code. Please let me know if I misunderstood something.
+
+
+<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",1
+192,chrislgarry/Apollo-11,pjsier,Proof IMU_PERFORMANCE_TEST_2 #590,"Closes #590. I tried to match the conventions around spacing and matching the scans from some recent PRs and the contributing guidelines, but let me know if any of this seems off! Covers all of the relevant scanned pages",1
+193,chrislgarry/Apollo-11,gSpera,Add Italian CONTRIBUTING,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",3
+194,chrislgarry/Apollo-11,dusekdan,Proof FINDCDUW--GUIDAP_INTERFACE.agc #581,"All pages.
+
+Edit: It's relevant to #581, but I don't see it linked there, so I am trying this way.",1
+195,chrislgarry/Apollo-11,byt3h3ad,Add Assamese README,"added Assamese README
+
+<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",4
+196,chrislgarry/Apollo-11,WCoder007,PROOF R60_62 ISSUE #,Complete proofreading done for R60_62 Issue #628 ,10
+197,chrislgarry/Apollo-11,Nabeelhassan,Proof LANDING_ANALOG_DISPLAYS #602,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",9
+198,chrislgarry/Apollo-11,shubhadeepmandal394,Create README.sm.md,"<!-- Proofing PRs:
+1. Title should follow ""Proof [FILE NAME] #[PROOF ISSUE]"", e.g:
+    ""Proof ALARM_AND_ABORT #564""
+2. Mention pages checked if you have not proofed the entire file
+
+--><!-- New README/CONTRIBUTING PRs:
+1. Title should follow ""Add [LANGUAGE] [README|CONTRIBUTING]"", e.g:
+    ""Add Dutch README""
+-->
+",2
+199,chrislgarry/Apollo-11,mabdullahsoyturk,Update CONTRIBUTING.tr.md,Turkish CONTRIBUTING.md file has been updated to add changes in commit 16aa2154b23dda648a2ab568734e11627af8448b,7

@@ -16,19 +16,23 @@ class DatasetGenerator:
             print("Getting pulls for repo: " + repo)
 
             pulls = self.get_pulls_by_repo(repo)
-            #Only taking top 1000 pulls per repo
+            #Only taking top 100 pulls per repo
             pr_count = 0
+            if pulls is None:
+                continue
             for pr in pulls:
                 if self.is_pr_valid(pr):
                     self.df = self.df.append(self.get_pr_data(pr, repo), ignore_index=True)
                     pr_count += 1
                     print("Pull request count for {}: {}".format(repo, pr_count))
-                if pr_count >= 1000:
+                if pr_count >= 100:
                     break
+
             # if len(self.df) > self.size:
             #     break
             print("Finished getting pulls for repo: " + repo)
-        self.df.to_csv(self.data_path + 'dataset.csv', index=False)
+            self.df.to_csv(self.data_path + 'dataset7.csv', index=True)
+        self.df.to_csv(self.data_path + 'fulldataset.csv', index=True)
 
     def get_repo_names(self, data_file='../data/repos.csv'):
         repos = pd.read_csv(data_file)
@@ -65,7 +69,13 @@ class DatasetGenerator:
         return True
 
     def get_pr_data(self, pr, repo_name):
-        return [repo_name, pr.user.login, pr.title, self.parse_pull_body(pr.body), pr.commits]
+        return {
+            'repo': repo_name,
+            'user': pr.user.login,
+            'pr_title': pr.title,
+            'pr_body': self.parse_pull_body(pr.body),
+            'commits': pr.commits
+        }
 
 
 
