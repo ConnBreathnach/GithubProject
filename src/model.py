@@ -6,6 +6,8 @@ from tensorflow.keras.layers import Dense, Reshape, Embedding, Dot, Input, LSTM
 from tensorflow.keras.models import Sequential, Model
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from tensorflow import convert_to_tensor
+
 
 def yield_strings(file_path='skipgram/corpus.txt'):
     with open(file_path, 'r') as f:
@@ -48,7 +50,12 @@ dataset.drop(['Unnamed: 0', 'pr_title_1', 'pr_title_2', 'commits_1', 'commits_2'
 
 X = dataset.drop(['same_repo'], axis=1)
 y = dataset['same_repo']
+X = X.apply(tokenizer.texts_to_sequences)
+# X = X.applymap(np.array, dtype=object)
+print(X.head())
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train=np.asarray(X_train).astype(object)
+X_test=np.asarray(X_test).astype(object)
 
 model.fit([X_train['pr_body_1'], X_train['pr_body_2']], y_train, epochs=5, batch_size=32, validation_data=([X_test['pr_body_1'], X_test['pr_body_2']], y_test))
 model.save('same_rep_model.h5')
