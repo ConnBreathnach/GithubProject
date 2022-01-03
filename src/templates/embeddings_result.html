@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src='https://raw.githack.com/karpathy/tsnejs/master/tsne.js'></script>
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 <h1>tSNE for visualizing similarity of words based on embedding space</h1>
 <img src='../static/tsne.png'>
-</body>
-</html>
+{% endblock %}

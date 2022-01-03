@@ -1,18 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %} Pull request comparator {% endblock %}
+
+{% block content %}
 <div class="topnav">
-  <a class="active" href="#home">PR comparison</a>
+  <h1> Word embeddings visualizer </h1>
+    <p>Enter words you might find in a pull request here and see how the model views them, and similar words based on their distance in the embedding weights</p>
   <div class="search-container">
      <form action = "http://localhost:5000/embeddings" method = "post">
-      <input type="text" placeholder="Sample words (separate by space, no comma)" name="sample_words">
-      <button type="submit"><i class="fa fa-search"></i></button>
+         <div class="input-group mb-3">
+             <input class="form-control" type="text" placeholder="Sample words (separate by space, no comma)" name="sample_words">
+         </div>
+
+      <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
     </form>
   </div>
 </div>
-</body>
-</html>
+{% endblock %}

@@ -1,24 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
+{% block content %}
 <div class="topnav">
-  <a class="active" href="#home">PR comparison</a>
+    <h1>PR comparison</h1>
+
   <div class="search-container">
      <form action = "http://localhost:5000/" method = "post">
-      <input type="text" placeholder="PR 1" name="pr_1">
-      <input type="text" placeholder="PR 2" name="pr_2">
-      <input type="radio" id="average" name="algorithm" value="average">
-         <label for="average">Average</label>
-      <input type="radio" id="wordmover" name="algorithm" value="wordmover">
-         <label for="wordmover">Word Mover</label>
-      <input type="radio" id="nn" name="algorithm" value="nn">
-         <label for="nn">Neural Network Evaluation</label>
-      <button type="submit"><i class="fa fa-search"></i></button>
+         <div class="input-group mb-3">
+            <input class="form-control" type="text" placeholder="Pull request 1 URL" name="pr_1">
+         </div>
+         <div class="input-group mb-3">
+            <input class="form-control" type="text" placeholder="Pull request 2 URL" name="pr_2">
+         </div>
+         <div class="form-check">
+      <input class="form-check-input" type="radio" id="average" name="algorithm" value="average">
+         <label class="form-check-label" for="average">Average</label>
+         </div>
+         <div class="form-check">
+      <input class="form-check-input" type="radio" id="wordmover" name="algorithm" value="wordmover">
+         <label class="form-check-label" for="wordmover">Word Mover</label>
+         </div>
+<!--      <input class="form-check-input" type="radio" id="nn" name="algorithm" value="nn">-->
+<!--         <label class="form-check-label" for="nn">Neural Network Evaluation (this does not work)</label>-->
+      <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
     </form>
   </div>
 </div>
@@ -26,5 +30,16 @@
 <div style="padding-left:16px">
   <h2> Pull request comparison runner </h2>
 </div>
-</body>
-</html>
+{% endblock %}
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+  <label class="form-check-label" for="flexRadioDefault1">
+    Default radio
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+  <label class="form-check-label" for="flexRadioDefault2">
+    Default checked radio
+  </label>
+</div>

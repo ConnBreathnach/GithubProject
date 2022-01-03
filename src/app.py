@@ -120,7 +120,7 @@ def run_algorithm():
         result = compare_prs(pr_1, pr_2, algorithm)
         return redirect(url_for('compare_pr_result', result=result))
 
-@app.route('/compare_prs/<pr_1>/<pr_2>/<algorithm>')
+@app.route('/compare_prs/<result>')
 def compare_pr_result(result):
     return render_template('compare_prs.html', result=result)
 
