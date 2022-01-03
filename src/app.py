@@ -1,6 +1,6 @@
 import re
 from flask import Flask, render_template, request, redirect, url_for
-from .pull_request_getter import get_pull_request
+import pull_request_getter
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import text
@@ -8,11 +8,9 @@ from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
 import pandas as pd
 from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
-import base64
-from io import BytesIO
 
 CORPUS_PATH = './skipgram/corpus.txt'
-model = load_model('skipgram/models/skipgram_model.h5')
+model = load_model('./skipgram/models/skipgram_model.h5')
 
 word_embedding_layer = model.get_layer(index=2)
 word_embedding_weights = word_embedding_layer.get_weights()[0][1:]
@@ -31,9 +29,9 @@ idx2word = {v: k for k, v in word2idx.items()}
 word_ids = [[word2idx[w] for w in text.text_to_word_sequence(s)] for s in yield_strings('skipgram/corpus.txt')]
 
 def compare_prs(pr_1, pr_2, algorithm):
-    pr_1_data = get_pull_request(pr_1)
+    pr_1_data = pull_request_getter.get_pull_request(pr_1)
     pr_1_body = parse_body(pr_1_data.body)
-    pr_2_data = get_pull_request(pr_2)
+    pr_2_data = pull_request_getter.get_pull_request(pr_2)
     pr_2_body = parse_body(pr_2_data.body)
 
     if algorithm == 'average':
@@ -139,3 +137,6 @@ def embeddings_post():
 @app.route('/embeddings/data')
 def embeddings_result():
     return render_template('embeddings_result.html')
+
+if __name__ == "__main__":
+    app.run(debug=True)

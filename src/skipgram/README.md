@@ -1,0 +1,1 @@
+Implementation of skipgram model, with help from blog post https://www.kdnuggets.com/2018/04/implementing-deep-learning-methods-feature-engineering-text-data-skip-gram.html

@@ -1,7 +1,17 @@
 {% extends "base.html" %}
 
 {% block title %} Comparing PRS {% endblock %}
-
+{% block head %}
+<style>
+         #svgelem {
+            position: relative;
+            left: 50%;
+            -webkit-transform: translateX(-20%);
+            -ms-transform: translateX(-20%);
+            transform: translateX(-20%);
+         }
+      </style>
+{% endblock %}
 {% block content %}
 <!--draw two circles with a line between them, and above the line is the result of the comparison-->
 <div class="container">
@@ -11,6 +21,7 @@
         </div>
     </div>
     <h1>The similarity between the two pull requests is {{result}}! This metric is not exact and should only be used to compare between different PRs, so try it out and see results from PRs in the same or different repositories!</h1>
+
 </div>
 
 {% endblock %}

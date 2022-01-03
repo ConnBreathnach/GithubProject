@@ -96,3 +96,22 @@ similar_words = {search_term: [idx2word[idx] for idx in distance_matrix[word2idx
                    for search_term in ['code', 'link', 'fix', 'bug', 'error']}
 
 print(similar_words)
+
+
+from sklearn.manifold import TSNE
+import matplotlib.pyplot as plt
+
+words = sum([[k] + v for k, v in similar_words.items()], [])
+words_ids = [word2idx[w] for w in words]
+word_vectors = np.array([word_embedding_weights[idx] for idx in words_ids])
+print('Total words:', len(words), '\tWord Embedding shapes:', word_vectors.shape)
+
+tsne = TSNE(n_components=2, random_state=0, n_iter=10000, perplexity=3)
+np.set_printoptions(suppress=True)
+T = tsne.fit_transform(word_vectors)
+labels = words
+
+plt.figure(figsize=(14, 8))
+plt.scatter(T[:, 0], T[:, 1], c='steelblue', edgecolors='k')
+for label, x, y in zip(labels, T[:, 0], T[:, 1]):
+    plt.annotate(label, xy=(x+1, y+1), xytext=(0, 0), textcoords='offset points')
