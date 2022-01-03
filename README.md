@@ -1,4 +1,17 @@
-Do contributors to the same repo write commit messages in stylistically similar ways? Do programmers change their commit message style based on the repo that they are committing in?
+
+
+This project embeds pull request data using a model trained on numerous github repositories and attempts to find similarities between different pull requests using different NLP techniques.
+
+Video explaining and showcasing project
+
+https://youtu.be/H7SYdSdAgiA
+
+Papers mentioned/shown in video:
+https://www.aaai.org/ocs/index.php/FLAIRS/FLAIRS16/paper/viewFile/12940/12572
+http://proceedings.mlr.press/v37/kusnerb15.pdf
+
+INITIAL IDEA:
+Do contributors to the same repo write pull requests in stylistically similar ways? Do programmers change their message style based on the repo that they are committing in?
 
 Train a language model to on two commit messages, both by the same author in the same repo. Perhaps use some feature embedding and a dissimilarity measure. Simply training a binary classifier will not work in my opinion, since we also want to see if two different people have similar writing styles in their messages, and later we can see if one of these committers "adopted" the other user's style. Do repositories have a standard when writing commit messages?
 
