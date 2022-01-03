@@ -79,7 +79,7 @@ class DatasetGenerator:
 
 
 class ModelDatasetGenerator:
-    def __init__(self, data_path='../data/', dataset_name='final_dataset.csv', size=1000000, split=0.5):
+    def __init__(self, data_path='../data/', dataset_name='final_dataset_2.csv', size=1000000, split=0.5):
         self.data_path = data_path
         self.dataset_name = dataset_name
         self.df = pd.DataFrame(columns=['pr_title_1', 'pr_body_1', 'commits_1', 'pr_title_2', 'pr_body_2', 'commits_2',

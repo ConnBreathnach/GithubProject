@@ -22,3 +22,15 @@ class PullRequestGetter:
         if pulls.totalCount < 10:
             return None
         return pulls
+
+def get_pull_request(link):
+    github_api = Github()
+    try:
+        link_split = link.split('/')
+        user = link_split[3]
+        repo_name = link_split[4]
+        repo = github_api.get_repo(user + '/' + repo_name)
+        pull_request = repo.get_pull(int(link_split[6]))
+    except Exception as e:
+        return "Pull request not found"
+    return pull_request
