@@ -32,8 +32,8 @@ def compare_prs(pr_1, pr_2, algorithm):
         return average_prs(pr_1_body, pr_2_data)
     elif algorithm == 'wordmover':
         return wordmover(pr_1_body, pr_2_body)
-    elif algorithm == 'nn':
-        return nn_algo(pr_1_body, pr_2_body)
+    # elif algorithm == 'nn':
+    #     return nn_algo(pr_1_body, pr_2_body)
     else:
         return 'Invalid algorithm'
 
