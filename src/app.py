@@ -5,6 +5,11 @@ import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import text
 from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
+import pandas as pd
+from sklearn.manifold import TSNE
+import matplotlib.pyplot as plt
+import base64
+from io import BytesIO
 
 CORPUS_PATH = './skipgram/corpus.txt'
 model = load_model('skipgram/models/skipgram_model.h5')
@@ -22,6 +27,8 @@ tokenizer.fit_on_texts(yield_strings(CORPUS_PATH))
 
 word2idx = tokenizer.word_index
 
+idx2word = {v: k for k, v in word2idx.items()}
+word_ids = [[word2idx[w] for w in text.text_to_word_sequence(s)] for s in yield_strings('skipgram/corpus.txt')]
 
 def compare_prs(pr_1, pr_2, algorithm):
     pr_1_data = get_pull_request(pr_1)
@@ -76,9 +83,26 @@ def calculate_move_cost(word_1, larger_body):
             min_cost = cost
     return min_cost
 
-def create_dataframe(pr_body):
+def create_dataframe(sample_words):
     distance_matrix = euclidean_distances(word_embedding_weights)
-    word_vectors = np.array([word_embedding_weights[idx] for idx in words_idxs])
+    similar_words = {
+        search_term: [idx2word[idx] for idx in distance_matrix[word2idx[search_term] - 1].argsort()[1:6] + 1]
+        for search_term in sample_words.lower().split()}
+
+    words = sum([[k] + v for k, v in similar_words.items()], [])
+    words_ids = [word2idx[w] for w in words]
+    word_vectors = np.array([word_embedding_weights[idx] for idx in words_ids])
+
+    tsne = TSNE(n_components=2, random_state=0, n_iter=10000, perplexity=3)
+    np.set_printoptions(suppress=True)
+    T = tsne.fit_transform(word_vectors)
+    labels = words
+
+    plt.figure(figsize=(14, 8))
+    plt.scatter(T[:, 0], T[:, 1], c='steelblue', edgecolors='k')
+    for label, x, y in zip(labels, T[:, 0], T[:, 1]):
+        plt.annotate(label, xy=(x + 1, y + 1), xytext=(0, 0), textcoords='offset points')
+    plt.savefig('static/tsne.png')
 
 
 app = Flask(__name__)
@@ -100,16 +124,18 @@ def run_algorithm():
 def compare_pr_result(result):
     return render_template('compare_prs.html', result=result)
 
-@app.route('embeddings')
+@app.route('/embeddings')
 def embeddings_page():
     return render_template('embeddings.html')
 
-@app.route('embeddings')
+@app.route('/embeddings', methods=['POST'])
 def embeddings_post():
     if request.method == 'POST':
-        pr = request.form['pr']
+        sample_words = request.form['sample_words']
+        create_dataframe(sample_words)
+        return redirect(url_for('embeddings_result'))
 
 
-@app.route('embeddings/data')
-def embeddings():
-    return render_template('embeddings.html')
+@app.route('/embeddings/data')
+def embeddings_result():
+    return render_template('embeddings_result.html')
